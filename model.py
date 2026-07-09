@@ -38,8 +38,11 @@ def stable_softmax(logits):
     
     return exp_row / sum_row
 
-# Step 6 - one_hot (not yet solved)
-# TODO: implement
+# Step 6 - one_hot
+def one_hot(labels, num_classes):
+    one_hot_enc = np.zeros((len(labels), num_classes))
+    one_hot_enc[np.arange(len(labels)), labels] = 1.0
+    return one_hot_enc
 
 # Step 7 - gather_true_class_probs (not yet solved)
 # TODO: implement
