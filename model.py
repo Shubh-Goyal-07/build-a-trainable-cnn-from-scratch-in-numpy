@@ -23,8 +23,13 @@ def row_sum(matrix):
     """Return per-row sums of a 2D array with shape (N, 1)."""
     return np.expand_dims(np.sum(matrix, axis=1), axis=1)
 
-# Step 4 - exp_shifted (not yet solved)
-# TODO: implement
+# Step 4 - exp_shifted
+import numpy as np
+
+def exp_shifted(logits):
+    """Subtract per-row max from logits and exponentiate elementwise."""
+    max_per_row = row_max(logits)
+    return np.exp(logits - max_per_row)
 
 # Step 5 - stable_softmax (not yet solved)
 # TODO: implement
