@@ -44,8 +44,9 @@ def one_hot(labels, num_classes):
     one_hot_enc[np.arange(len(labels)), labels] = 1.0
     return one_hot_enc
 
-# Step 7 - gather_true_class_probs (not yet solved)
-# TODO: implement
+# Step 7 - gather_true_class_probs
+def gather_true_class_probs(probs, labels):
+    return probs[np.arange(len(labels)), labels]
 
 # Step 8 - cross_entropy_loss (not yet solved)
 # TODO: implement
