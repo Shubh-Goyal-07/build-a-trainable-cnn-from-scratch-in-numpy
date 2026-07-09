@@ -16,8 +16,12 @@ import numpy as np
 def row_max(matrix):
     return  np.expand_dims(np.max(matrix, axis=1), axis=1)
 
-# Step 3 - row_sum (not yet solved)
-# TODO: implement
+# Step 3 - row_sum
+import numpy as np
+
+def row_sum(matrix):
+    """Return per-row sums of a 2D array with shape (N, 1)."""
+    return np.expand_dims(np.sum(matrix, axis=1), axis=1)
 
 # Step 4 - exp_shifted (not yet solved)
 # TODO: implement
