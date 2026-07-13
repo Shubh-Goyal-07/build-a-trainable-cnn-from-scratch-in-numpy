@@ -25,7 +25,7 @@ python scaffold.py
 - [x] **13.** pad_2d
 - [x] **14.** output_spatial_size
 - [x] **15.** im2col
-- [ ] **16.** col2im
+- [x] **16.** col2im
 - [ ] **17.** conv2d_forward
 - [ ] **18.** conv2d_grad_input
 - [ ] **19.** conv2d_grad_weights

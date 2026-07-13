@@ -119,8 +119,38 @@ def im2col(images, kernel_h, kernel_w, stride, padding):
 
     return out.reshape(N * out_h * out_w, C * kernel_h * kernel_w)
 
-# Step 16 - col2im (not yet solved)
-# TODO: implement
+# Step 16 - col2im
+def col2im(cols, input_shape, kernel_h, kernel_w, stride, padding):
+    N, C, H, W = input_shape
+
+    out_h = (H + 2 * padding - kernel_h) // stride + 1
+    out_w = (W + 2 * padding - kernel_w) // stride + 1
+
+    # Image with padding
+    padded = np.zeros(
+        (N, C, H + 2 * padding, W + 2 * padding),
+        dtype=cols.dtype
+    )
+
+    row = 0
+    for n in range(N):
+        for i in range(out_h):
+            for j in range(out_w):
+                r = i * stride
+                c = j * stride
+
+                patch = cols[row].reshape(C, kernel_h, kernel_w)
+
+                # Add because patches overlap
+                padded[n, :, r:r+kernel_h, c:c+kernel_w] += patch
+
+                row += 1
+
+    # Remove padding
+    if padding > 0:
+        return padded[:, :, padding:-padding, padding:-padding]
+
+    return padded
 
 # Step 17 - conv2d_forward (not yet solved)
 # TODO: implement
