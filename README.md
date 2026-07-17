@@ -26,7 +26,7 @@ python scaffold.py
 - [x] **14.** output_spatial_size
 - [x] **15.** im2col
 - [x] **16.** col2im
-- [ ] **17.** conv2d_forward
+- [x] **17.** conv2d_forward
 - [ ] **18.** conv2d_grad_input
 - [ ] **19.** conv2d_grad_weights
 - [ ] **20.** conv2d_grad_bias
