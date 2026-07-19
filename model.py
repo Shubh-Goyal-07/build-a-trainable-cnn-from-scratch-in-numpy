@@ -298,8 +298,9 @@ def relu_forward(x):
     z = np.where(x>0, x, 0)
     return z, {"x": x}
 
-# Step 26 - relu_backward (not yet solved)
-# TODO: implement
+# Step 26 - relu_backward
+def relu_backward(d_out, cache):
+    return d_out * (cache["x"]>0).astype(np.int8)
 
 # Step 27 - flatten_forward (not yet solved)
 # TODO: implement
