@@ -777,6 +777,10 @@ def train_loop(params, x_train, y_train, num_epochs, batch_size, lr=1e-3, beta_o
 
     return params, loss_history
 
-# Step 59 - evaluate (not yet solved)
-# TODO: implement
+# Step 59 - evaluate
+def evaluate(params, x, y):
+    preds = lenet_predict(x, params)
+    correct = preds==y
+
+    return np.mean(correct)
 
