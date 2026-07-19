@@ -316,7 +316,7 @@ def flatten_backward(d_out, cache):
 
 # Step 29 - linear_forward
 def linear_forward(x, weights, bias):
-    out = x @ W + bias
+    out = x @ weights + bias
     cache = {
         "x": x,
         "weights": weights
