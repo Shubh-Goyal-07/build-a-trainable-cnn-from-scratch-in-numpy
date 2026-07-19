@@ -399,8 +399,17 @@ import numpy as np
 def adam_param_step(param, m_hat, v_hat, lr, eps):
     return param - lr*(m_hat / (np.sqrt(v_hat) + eps))
 
-# Step 41 - adam_step (not yet solved)
-# TODO: implement
+# Step 41 - adam_step
+import numpy as np
+
+def adam_step(param, grad, m, v, t, lr, beta_one, beta_two, eps):
+    mt = adam_update_m(m, grad, beta_one)
+    vt = adam_update_v(v, grad, beta_two)
+
+    m_hat = adam_bias_correct(mt, beta_one, t)
+    v_hat = adam_bias_correct(vt, beta_two, t)
+
+    return adam_param_step(param, m_hat, v_hat, lr, eps), mt, vt
 
 # Step 42 - init_conv_layer (not yet solved)
 # TODO: implement
