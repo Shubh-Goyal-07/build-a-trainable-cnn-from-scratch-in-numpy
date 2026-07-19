@@ -293,8 +293,10 @@ def maxpool2d_backward(d_out, cache):
 
     return dx
 
-# Step 25 - relu_forward (not yet solved)
-# TODO: implement
+# Step 25 - relu_forward
+def relu_forward(x):
+    z = np.where(x>0, x, 0)
+    return z, {"x": x}
 
 # Step 26 - relu_backward (not yet solved)
 # TODO: implement
