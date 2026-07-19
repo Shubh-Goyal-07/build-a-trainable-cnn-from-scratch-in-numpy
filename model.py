@@ -213,8 +213,9 @@ def conv2d_grad_weights(d_out, cache):
     
     return dW
 
-# Step 20 - conv2d_grad_bias (not yet solved)
-# TODO: implement
+# Step 20 - conv2d_grad_bias
+def conv2d_grad_bias(d_out):
+    return np.sum(d_out, axis=(0, 2, 3))
 
 # Step 21 - conv2d_backward (not yet solved)
 # TODO: implement
