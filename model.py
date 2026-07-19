@@ -650,8 +650,71 @@ def iterate_minibatches(x, y, batch_size, seed=0):
 
         yield xb, yb
 
-# Step 56 - train_step (not yet solved)
-# TODO: implement
+# Step 56 - train_step
+def train_step(params, opt_state, xb, yb,
+               lr, beta_one, beta_two, eps, step):
+
+    logits, caches = lenet_forward(xb, params)
+
+    loss = softmax_cross_entropy_forward(logits, yb)
+
+    dlogits = softmax_cross_entropy_backward(logits, yb)
+
+    grads = lenet_backward(dlogits, caches)
+
+    # Copy params/state (optional but usually preferred)
+    new_params = {
+        layer: {
+            "W": params[layer]["W"].copy(),
+            "b": params[layer]["b"].copy()
+        }
+        for layer in params
+    }
+
+    new_opt_state = {
+        layer: {
+            "W": {
+                "m": opt_state[layer]["W"]["m"].copy(),
+                "v": opt_state[layer]["W"]["v"].copy()
+            },
+            "b": {
+                "m": opt_state[layer]["b"]["m"].copy(),
+                "v": opt_state[layer]["b"]["v"].copy()
+            }
+        }
+        for layer in opt_state
+    }
+
+    for layer in ["conv1", "conv2", "fc1", "fc2"]:
+        new_params[layer]["W"], \
+        new_opt_state[layer]["W"]["m"], \
+        new_opt_state[layer]["W"]["v"] = adam_step(
+            params[layer]["W"],
+            grads[layer]["dW"],
+            opt_state[layer]["W"]["m"],
+            opt_state[layer]["W"]["v"],
+            step,
+            lr,
+            beta_one,
+            beta_two,
+            eps,
+        )
+
+        new_params[layer]["b"], \
+        new_opt_state[layer]["b"]["m"], \
+        new_opt_state[layer]["b"]["v"] = adam_step(
+            params[layer]["b"],
+            grads[layer]["db"],
+            opt_state[layer]["b"]["m"],
+            opt_state[layer]["b"]["v"],
+            step,
+            lr,
+            beta_one,
+            beta_two,
+            eps,
+        )
+
+    return new_params, new_opt_state, loss
 
 # Step 57 - train_one_epoch (not yet solved)
 # TODO: implement
