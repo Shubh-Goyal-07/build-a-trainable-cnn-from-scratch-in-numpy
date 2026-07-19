@@ -636,8 +636,19 @@ def train_test_split(x, y, test_fraction=0.2, seed=0):
 
     return x_train, y_train, x_test, y_test
 
-# Step 55 - iterate_minibatches (not yet solved)
-# TODO: implement
+# Step 55 - iterate_minibatches
+def iterate_minibatches(x, y, batch_size, seed=0):
+    N = len(x)
+
+    indices = shuffle_indices(N, seed)
+
+    for start in range(0, N - batch_size + 1, batch_size):
+        batch_idx = indices[start:start + batch_size]
+
+        xb = x[batch_idx]
+        yb = y[batch_idx]
+
+        yield xb, yb
 
 # Step 56 - train_step (not yet solved)
 # TODO: implement
