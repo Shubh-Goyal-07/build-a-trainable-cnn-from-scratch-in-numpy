@@ -203,8 +203,15 @@ def conv2d_grad_input(d_out, cache):
         cache["padding"]
     )
 
-# Step 19 - conv2d_grad_weights (not yet solved)
-# TODO: implement
+# Step 19 - conv2d_grad_weights
+def conv2d_grad_weights(d_out, cache):
+    N, c_out, out_h, out_w = d_out.shape
+    d_out = d_out.transpose(1, 0, 2, 3)
+    d_out = d_out.reshape(c_out, N*out_h*out_w)
+
+    dW = (d_out @ cache["cols"]).reshape(cache["weights"].shape)
+    
+    return dW
 
 # Step 20 - conv2d_grad_bias (not yet solved)
 # TODO: implement
