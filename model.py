@@ -307,8 +307,11 @@ def flatten_forward(x):
     N, _, _, _ = x.shape
     return x.reshape(N, -1), {"x_shape": x.shape}
 
-# Step 28 - flatten_backward (not yet solved)
-# TODO: implement
+# Step 28 - flatten_backward
+import numpy as np
+
+def flatten_backward(d_out, cache):
+    return d_out.reshape(cache["x_shape"])
 
 # Step 29 - linear_forward (not yet solved)
 # TODO: implement
