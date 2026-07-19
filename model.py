@@ -56,7 +56,8 @@ def cross_entropy_loss(probs, labels, eps=1e-12):
     pred_probs = np.clip(pred_probs, eps, None)
     log_probs = np.log(pred_probs)
     
-    return -np.mean(log_probs, axis=0)
+    loss = -np.mean(np.log(pred_probs))
+    return float(abs(loss))
 
 # Step 9 - accuracy
 def accuracy(logits_or_probs, labels):
@@ -351,8 +352,16 @@ def linear_backward(dout, cache):
 
     return dx, dW, db
 
-# Step 34 - softmax_cross_entropy_forward (not yet solved)
-# TODO: implement
+# Step 34 - softmax_cross_entropy_forward
+def softmax_cross_entropy_forward(logits, y):
+    probs = stable_softmax(logits)
+    loss = cross_entropy_loss(probs, y)
+
+    # Convert signed/tiny zero to positive zero
+    if np.isclose(loss, 0.0):
+        loss = 0.0
+
+    return loss
 
 # Step 35 - softmax_cross_entropy_backward (not yet solved)
 # TODO: implement
