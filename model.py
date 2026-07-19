@@ -377,8 +377,11 @@ import numpy as np
 def sgd_step(param, grad, lr):
     return param - grad*lr
 
-# Step 37 - adam_update_m (not yet solved)
-# TODO: implement
+# Step 37 - adam_update_m
+import numpy as np
+
+def adam_update_m(m, grad, beta_one):
+    return beta_one*m + (1-beta_one)*grad
 
 # Step 38 - adam_update_v (not yet solved)
 # TODO: implement
