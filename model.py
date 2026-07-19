@@ -371,8 +371,11 @@ def softmax_cross_entropy_backward(logits, y):
 
     return (probs - one_hot_enc) / N
 
-# Step 36 - sgd_step (not yet solved)
-# TODO: implement
+# Step 36 - sgd_step
+import numpy as np
+
+def sgd_step(param, grad, lr):
+    return param - grad*lr
 
 # Step 37 - adam_update_m (not yet solved)
 # TODO: implement
