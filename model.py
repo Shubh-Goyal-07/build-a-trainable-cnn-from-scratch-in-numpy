@@ -429,8 +429,16 @@ def init_linear_layer(in_features, out_features, seed=0):
 
     return params
 
-# Step 44 - init_lenet (not yet solved)
-# TODO: implement
+# Step 44 - init_lenet
+def init_lenet(in_channels, num_classes, seed=0):
+    lenet = {
+        "conv1": init_conv_layer(6, in_channels, 5, seed),
+        "conv2": init_conv_layer(16, 6, 5, seed+1),
+        "fc1": init_linear_layer(256, 120, seed+2),
+        "fc2": init_linear_layer(120, num_classes, seed+3)
+    }
+
+    return lenet
 
 # Step 45 - forward_conv_block (not yet solved)
 # TODO: implement
