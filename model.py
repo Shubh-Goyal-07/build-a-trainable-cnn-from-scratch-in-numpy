@@ -302,8 +302,10 @@ def relu_forward(x):
 def relu_backward(d_out, cache):
     return d_out * (cache["x"]>0).astype(np.int8)
 
-# Step 27 - flatten_forward (not yet solved)
-# TODO: implement
+# Step 27 - flatten_forward
+def flatten_forward(x):
+    N, _, _, _ = x.shape
+    return x.reshape(N, -1), {"x_shape": x.shape}
 
 # Step 28 - flatten_backward (not yet solved)
 # TODO: implement
